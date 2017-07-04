@@ -101,6 +101,7 @@
         cordova.plugins.barcodeScanner.scan(
             function (result) {
                 $('#ripple-payment-from-address').val(result.text);
+                getRippleFromAddressInfo();
             },
             function (error) {
 
@@ -114,6 +115,7 @@
         cordova.plugins.barcodeScanner.scan(
             function (result) {
                 $('#ripple-payment-to-address').val(result.text);
+                getRippleToAddressInfo()
             },
             function (error) {
 
