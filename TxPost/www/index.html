@@ -5,7 +5,7 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src wss://s-east.ripple.com:443 wss://s.altnet.rippletest.net:51233">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src wss://*.ripple.com:443 wss://s.altnet.rippletest.net:51233">
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
@@ -26,6 +26,7 @@
         <div role="main" class="ui-content">
             <label>rippled node:</label>
             <select id="rippled-nodes"></select>
+            <span id="ripple-connection-status"></span>
             <a href="#build-ripple-payment-page" class="ui-btn">Create a Ripple Payment</a>
             <button id="scan-ripple-transaction-btn"
                     data-role="button"
@@ -49,7 +50,6 @@
         </div>
 
         <div role="main" class="ui-content">
-            <span id="ripple-connection-status"></span>
             <form id="build-ripple-payment-form">
                 <fieldset>
                     <button id="scan-ripple-from-address-btn"

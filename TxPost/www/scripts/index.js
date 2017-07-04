@@ -13,6 +13,8 @@
         's.altnet.rippletest.net': 'wss://s.altnet.rippletest.net:51233',
         's-east.ripple.com': 'wss://s-east.ripple.com:443',
         's-west.ripple.com': 'wss://s-west.ripple.com:443',
+        's1.ripple.com': 'wss://s1.ripple.com:443',
+        's2.ripple.com': 'wss://s2.ripple.com:443',
         'custom node': 'wss://'
     };
 
@@ -73,11 +75,18 @@
     };
 
     function onPause() {
-        // TODO: This application has been suspended. Save application state here.
+        if (rippleApi) {
+            rippleApi.disconnect();
+            $('#ripple-connection-status').html("Disconnected");
+        }
     };
 
     function onResume() {
-        // TODO: This application has been reactivated. Restore application state here.
+        rippleApi.connect()
+            .then(
+            () => { $('#ripple-connection-status').html("Connected"); },
+            error => { $('#ripple-connection-status').html("Disconnected"); }
+            );
     };
 
     function changeRippledNode() {
