@@ -1,0 +1,10 @@
+{
+  "name": "TxPost",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "highlight.js-browser": "9.10.0",
+    "highlight.js": "9.11.0",
+    "qrcodejs": "^1.0.0"
+  }
+}

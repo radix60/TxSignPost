@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlightjs/github-gist.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <title>TxSign</title>
+</head>
+<body>
+
+    <div data-role="page" id="home-page">
+
+        <div data-role="header" class="header" role="banner">
+            <h1 class="ui-title" role="heading">TxSign</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <button id="scan-ripple-transaction-btn"
+                    data-role="button"
+                    data-icon="search"
+                    class="ui-btn ui-btn-corner-all">
+                Scan Ripple Transaction
+            </button>
+            <button id="generate-ripple-address-btn"
+                    data-role="button"
+                    class="ui-btn ui-btn-corner-all">
+                Generate New Ripple Address
+            </button>
+            <a href="#qr-maker-page" class="ui-btn">
+                Create QR Code
+            </a>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxSign</h4>
+        </footer>
+
+    </div>
+
+    <div data-role="page" id="review-ripple-transaction-page">
+
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading" data-add-back-btn="true">Review transaction</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <button id="rescan-ripple-transaction-btn"
+                    data-role="button"
+                    data-icon="search"
+                    class="ui-btn ui-btn-corner-all">
+                Rescan Transaction
+            </button>
+            <button id="sign-ripple-transaction-btn"
+                    data-role="button"
+                    class="ui-btn ui-btn-corner-all ui-focus">
+                Sign With Private Key
+            </button>
+            <pre><code id="unsigned-ripple-transaction" class="lang-json"></code></pre>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxSign</h4>
+        </footer>
+
+    </div>
+
+    <div data-role="page" id="signed-ripple-transaction-page">
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading" data-add-back-btn="true">Signed Transaction</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div id="ripple-signed-transaction-container">
+                <div id="ripple-signed-transaction-qr"></div>
+                <pre><code id="signed-ripple-transaction" class="lang-json"></code></pre>
+            </div>
+            <button id="print-signed-ripple-transaction-btn"
+                    data-role="button"
+                    class="ui-btn ui-btn-corner-all">
+                Print
+            </button>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxSign</h4>
+        </footer>
+    </div>
+
+    <div data-role="page" id="qr-maker-page">
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading" data-add-back-btn="true">QR Code Maker</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <input type="text" id="generic-qr-code-input" />
+            <button id="make-generic-qr-code-btn"
+                    data-role="button"
+                    class="ui-btn ui-btn-corner-all">
+                Make QR
+            </button>
+            <button id="print-generic-qr-code-btn"
+                    data-role="button"
+                    class="ui-btn ui-btn-corner-all">
+                Print
+            </button>
+            <div id="generic-qr-container" class="center">
+                <div id="generic-qr" class="qrcode center"></div>
+                <span id="generic-qr-text" class="wrapBreakWord"></span>
+            </div>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxSign</h4>
+        </footer>
+    </div>
+
+    <div data-role="page" id="ripple-address-page">
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading" data-add-back-btn="true">Ripple Address</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <a id="print-ripple-address-btn" href="#" class="ui-btn">Print</a>
+            <div id="ripple-address-container" class="center">
+                <div id="ripple-address-qr" class="qrcode center"></div>
+                <span id="ripple-address-text" class="wrapBreakWord"></span>
+            </div>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxSign</h4>
+        </footer>
+    </div>
+
+    <div data-role="page" id="ripple-secret-page">
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading" data-add-back-btn="true">Ripple Secret</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <a id="print-ripple-secret-btn" href="#" class="ui-btn">Print</a>
+            <div id="ripple-secret-container" class="center">
+                <div id="ripple-secret-qr" class="qrcode center"></div>
+                <span id="ripple-secret-text" class="wrapBreakWord"></span>
+            </div>
+            <a href="#ripple-address-page" class="ui-btn">Show Address</a>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxSign</h4>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="scripts/lodash.min.js"></script>
+    <script type="text/javascript" src="scripts/highlight.pack.js"></script>
+    <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+    <script type="text/javascript" src="scripts/ripple-binary-codec.js"></script>
+    <script type="text/javascript" src="scripts/ripple-keypairs.js"></script>
+    <script type="text/javascript" src="scripts/ripple-0.17.4-min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "TxSign",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "highlight.js": "^9.11.0",
+    "highlight.js-browser": "^9.10.0",
+    "ripple-keypairs": "^0.10.0",
+    "ripple-binary-codec": "^0.1.10",
+    "ripple-lib": "^0.17.7"
+  },
+  "devDependencies": {
+  }
+}

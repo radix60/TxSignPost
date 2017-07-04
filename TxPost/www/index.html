@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src wss://s-east.ripple.com:443 wss://s.altnet.rippletest.net:51233">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlightjs/github-gist.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>TxPost</title>
+</head>
+<body>
+    <div data-role="page" id="home-page">
+
+        <div data-role="header" class="header" role="banner">
+            <h1 class="ui-title" role="heading">TxPost</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <label>rippled node:</label>
+            <select id="rippled-nodes"></select>
+            <a href="#build-ripple-payment-page" class="ui-btn">Create a Ripple Payment</a>
+            <button id="scan-ripple-transaction-btn"
+                    data-role="button"
+                    data-icon="search"
+                    class="ui-btn ui-btn-corner-all">
+                Scan a Signed Ripple Transaction
+            </button>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxPost</h4>
+        </footer>
+
+    </div>
+
+    <div data-role="page" id="build-ripple-payment-page">
+
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading">Ripple Payment</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <span id="ripple-connection-status"></span>
+            <form id="build-ripple-payment-form">
+                <fieldset>
+                    <button id="scan-ripple-from-address-btn"
+                            class="ui-btn ui-icon-search ui-btn-inline ui-btn-icon-notext">Scan</button>
+                    <label>From Address:</label>
+                    <input type="text" id="ripple-payment-from-address" data-clear-btn="true" class="required" />
+                    <pre><code id="ripple-payment-from-address-balances" class="lang-json"></code></pre>
+                </fieldset>
+                <fieldset>
+                    <button id="scan-ripple-to-address-btn"
+                            class="ui-btn ui-icon-search ui-btn-inline ui-btn-icon-notext">Scan</button>
+                    <label>
+                        To Address:
+                    </label>
+                    <input type="text" id="ripple-payment-to-address" data-clear-btn="true" class="required" />
+                    <pre><code id="ripple-payment-to-address-balances" class="lang-json"></code></pre>
+                </fieldset>
+                <fieldset>
+                    <label>Amount:</label>
+                    <input type="number" id="ripple-payment-amount" data-clear-btn="true" class="required" />
+                </fieldset>
+
+                <input type="submit" id="build-ripple-payment-button" value="Prepare Payment" />
+            </form>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxPost</h4>
+        </footer>
+
+    </div>
+
+    <div data-role="page" id="unsigned-ripple-transaction-page">
+
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading">Review Unsigned Ripple Transaction</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div id="unsigned-ripple-transaction-container">
+                <div id="unsigned-ripple-transaction-qr"></div>
+                <pre><code id="unsigned-ripple-transaction-json" class="lang-json"></code></pre>
+            </div>
+            <button id="print-unsigned-ripple-transaction-btn">Print</button>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxPost</h4>
+        </footer>
+
+    </div>
+
+    <div data-role="page" id="review-ripple-transaction-page">
+
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading">Review Signed Ripple Transaction</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <pre><code id="signed-ripple-transaction-json" class="lang-json"></code></pre>
+            <button id="submit-ripple-transaction-btn">Post</button>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxPost</h4>
+        </footer>
+
+    </div>
+
+    <div data-role="page" id="ripple-transaction-result-page">
+
+        <div data-role="header" class="header" role="banner">
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+            <h1 class="ui-title" role="heading">Ripple Transaction Result</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <pre><code id="ripple-transaction-result" class="lang-json"></code></pre>
+        </div>
+
+        <footer data-role="footer" data-position="fixed">
+            <h4 class="ui-title" role="heading">TxPost</h4>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="scripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="scripts/lodash.min.js"></script>
+    <script type="text/javascript" src="scripts/highlight.pack.js"></script>
+    <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+    <script type="text/javascript" src="scripts/ripple-binary-codec.js"></script>
+    <script type="text/javascript" src="scripts/ripple-0.17.4-min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>
