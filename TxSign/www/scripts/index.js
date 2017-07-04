@@ -146,7 +146,6 @@ var scannerSettings = {
     }
 
     function makeQrCode() {
-        clear();
         var text = $('#generic-qr-code-input').val();
         if (text) {
             $('#generic-qr-text').html(text);
